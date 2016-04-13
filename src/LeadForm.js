@@ -8,7 +8,11 @@ import { Flex } from 'reflexbox'
 export default class LeadForm extends Component {
 
     static propTypes = {
-        status: PropTypes.bool.isRequired,
+        status: PropTypes.oneOf([
+            'pending',
+            'success',
+            'failure'
+        ]),
         submit: PropTypes.func.isRequired,
         theme: PropTypes.oneOf([
             'primary',
