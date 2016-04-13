@@ -1,12 +1,12 @@
 {
   "name": "@leadgrabr/lead-form",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "LeadGrabr lead form",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/**",
-    "prebuild": "rm -rf lib && rm -rf build",
-    "build": "babel -d lib/ src/",
+    "prebuild": "rm -rf dist",
+    "build": "babel -d dist/ src/",
     "prepublish": "npm run lint && npm run build"
   },
   "author": "bentatum",
