@@ -59,7 +59,7 @@ export default class LeadForm extends Component {
 
     render() {
         const { status, theme, ...props } = this.props
-        const inputProps = { theme }
+        const sharedProps = { theme }
         return (
             <Base {...props}>
                 <JoifulForm
@@ -74,28 +74,28 @@ export default class LeadForm extends Component {
                     values={this.state}
                 >
                     <JoifulInput
-                        {...inputProps}
+                        {...sharedProps}
                         label="Name"
                         name="name"
                     />
                     <JoifulInput
-                        {...inputProps}
+                        {...sharedProps}
                         label="Email"
                         name="email"
                     />
                     <JoifulInput
-                        {...inputProps}
+                        {...sharedProps}
                         label="Phone"
                         name="phone"
                     />
                     <JoifulInput
-                        {...inputProps}
+                        {...sharedProps}
                         is="textarea"
                         label="Message"
                         name="message"
                     />
                     <Button
-                        backgroundColor="primary"
+                        {...sharedProps}
                         disabled={status === 'pending'}
                         onClick={this.handleSubmit}
                         style={{ width: '100%' }}
