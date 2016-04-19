@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import { default as React, Component, PropTypes } from 'react'
 import { Base, Button } from 'rebass'
 import { JoifulForm, JoifulInput } from 'joiful-react-forms'
-import Joi from 'joi'
+import { default as Joi } from 'joi'
 import { Flex } from 'reflexbox'
+import { default as isEqual } from 'lodash.isequal'
 
 const phoneNumberPattern = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gi // eslint-disable-line max-len
 
@@ -52,11 +53,17 @@ export default class LeadForm extends Component {
             return false
         }
 
-        return this.props.submit(this.state)
+        const { formValues } = this.state
+
+        this.setState({
+            submittedValues: formValues
+        })
+
+        return this.props.submit(formValues)
     }
 
     handleChange(event, formValues) {
-        this.setState(formValues)
+        this.setState({ formValues })
     }
 
     render() {
@@ -71,6 +78,11 @@ export default class LeadForm extends Component {
             ...props
           } = this.props
 
+        const {
+            formValues,
+            submittedValues
+          } = this.state
+
         const sharedProps = { theme }
 
         return (
@@ -84,7 +96,7 @@ export default class LeadForm extends Component {
                         phone: phone.min(10).max(12),
                         message: Joi.string().min(3)
                     }}
-                    values={this.state}
+                    values={this.state.formValues}
                 >
                     <JoifulInput
                         label="Name"
@@ -112,7 +124,10 @@ export default class LeadForm extends Component {
                         {...messageProps}
                     />
                     <Button
-                        disabled={status === 'pending'}
+                        disabled={
+                            status === 'pending'
+                            || status === 'success' && isEqual(formValues, submittedValues)
+                        }
                         onClick={this.handleSubmit}
                         style={{ width: '100%' }}
                         {...sharedProps}
@@ -123,7 +138,11 @@ export default class LeadForm extends Component {
                                 Processing...
                             </Flex>
                         <Else/>
-                            Submit
+                            <If condition={status === 'success'}>
+                                Thanks!
+                            <Else/>
+                                Submit
+                            </If>
                         </If>
                     </Button>
                 </JoifulForm>
