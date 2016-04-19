@@ -7,7 +7,8 @@
     "lint": "eslint src/**",
     "prebuild": "rm -rf dist",
     "build": "babel -d dist/ src/",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "npm run lint && npm run build",
+    "test": "mocha test --compilers js:babel-register"
   },
   "author": "bentatum",
   "license": "ISC",
@@ -23,6 +24,18 @@
     "eslint-plugin-import": "^1.4.0",
     "eslint-plugin-jsx-control-statements": "^1.1.0",
     "eslint-plugin-react": "^4.2.3",
-    "jsx-control-statements": "^3.1.1"
+    "expect": "^1.16.0",
+    "joiful-react-forms": "^0.1.3",
+    "jsx-control-statements": "^3.1.1",
+    "mocha": "^2.4.5",
+    "react": "^15.0.1",
+    "react-addons-test-utils": "^15.0.1",
+    "rebass": "^0.2.6"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint"
+  },
+  "dependencies": {
+    "reflexbox": "^1.1.2"
   }
 }
