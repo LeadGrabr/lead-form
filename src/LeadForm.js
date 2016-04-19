@@ -20,6 +20,10 @@ export default class LeadForm extends Component {
 
     static propTypes = {
         buttonProps: PropTypes.object,
+        emailProps: PropTypes.object,
+        messageProps: PropTypes.object,
+        nameProps: PropTypes.object,
+        phoneProps: PropTypes.object,
         status: PropTypes.oneOf([
             'pending',
             'success',
@@ -58,6 +62,10 @@ export default class LeadForm extends Component {
     render() {
         const {
             buttonProps,
+            emailProps,
+            messageProps,
+            nameProps,
+            phoneProps,
             status,
             theme,
             ...props
@@ -79,32 +87,36 @@ export default class LeadForm extends Component {
                     values={this.state}
                 >
                     <JoifulInput
-                        {...sharedProps}
                         label="Name"
                         name="name"
+                        {...sharedProps}
+                        {...nameProps}
                     />
                     <JoifulInput
-                        {...sharedProps}
                         label="Email"
                         name="email"
+                        {...sharedProps}
+                        {...emailProps}
                     />
                     <JoifulInput
-                        {...sharedProps}
                         label="Phone"
                         name="phone"
+                        {...sharedProps}
+                        {...phoneProps}
                     />
                     <JoifulInput
-                        {...sharedProps}
                         is="textarea"
                         label="Message"
                         name="message"
+                        {...sharedProps}
+                        {...messageProps}
                     />
                     <Button
-                        {...sharedProps}
-                        {...buttonProps}
                         disabled={status === 'pending'}
                         onClick={this.handleSubmit}
                         style={{ width: '100%' }}
+                        {...sharedProps}
+                        {...buttonProps}
                     >
                         <If condition={status === 'pending'}>
                             <Flex justify="center">
