@@ -64,7 +64,7 @@ export default class LeadForm extends Component {
           } = this.props
 
         const sharedProps = { theme }
-        
+
         return (
             <Base {...props}>
                 <JoifulForm
