@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { Base, Button } from 'rebass'
-import autobind from 'autobind-decorator'
 import { JoifulForm, JoifulInput } from 'joiful-react-forms'
 import Joi from 'joi'
 import { Flex } from 'reflexbox'
@@ -43,7 +42,6 @@ export default class LeadForm extends Component {
 
     state = {}
 
-    @autobind
     handleSubmit(error) {
         if (error) {
             return false
@@ -52,7 +50,6 @@ export default class LeadForm extends Component {
         return this.props.submit(this.state)
     }
 
-    @autobind
     handleChange(event, formValues) {
         this.setState(formValues)
     }
@@ -63,8 +60,8 @@ export default class LeadForm extends Component {
         return (
             <Base {...props}>
                 <JoifulForm
-                    onChange={this.handleChange}
-                    onSubmit={this.handleSubmit}
+                    onChange={::this.handleChange}
+                    onSubmit={::this.handleSubmit}
                     schema={{
                         name: Joi.string().required(),
                         email: Joi.string().email().required(),
