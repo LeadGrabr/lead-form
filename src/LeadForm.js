@@ -19,6 +19,7 @@ const phone = Joi.string().regex(phoneNumberPattern).options({
 export default class LeadForm extends Component {
 
     static propTypes = {
+        buttonProps: PropTypes.object,
         status: PropTypes.oneOf([
             'pending',
             'success',
@@ -55,8 +56,15 @@ export default class LeadForm extends Component {
     }
 
     render() {
-        const { status, theme, ...props } = this.props
+        const {
+            buttonProps,
+            status,
+            theme,
+            ...props
+          } = this.props
+
         const sharedProps = { theme }
+        
         return (
             <Base {...props}>
                 <JoifulForm
@@ -93,6 +101,7 @@ export default class LeadForm extends Component {
                     />
                     <Button
                         {...sharedProps}
+                        {...buttonProps}
                         disabled={status === 'pending'}
                         onClick={this.handleSubmit}
                         style={{ width: '100%' }}
