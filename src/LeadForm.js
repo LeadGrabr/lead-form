@@ -129,7 +129,6 @@ export default class LeadForm extends Component {
                             || status === 'success' && isEqual(formValues, submittedValues)
                         }
                         onClick={this.handleSubmit}
-                        style={{ width: '100%' }}
                         {...sharedProps}
                         {...buttonProps}
                     >
@@ -149,5 +148,4 @@ export default class LeadForm extends Component {
             </Base>
         )
     }
-
 }

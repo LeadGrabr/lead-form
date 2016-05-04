@@ -10,7 +10,7 @@ describe('LeadForm', () => {
     let tree
 
     beforeEach(() => {
-        renderer.render(<LeadForm/>)
+        renderer.render(<LeadForm submit={() => null}/>)
         tree = renderer.getRenderOutput()
     })
 
