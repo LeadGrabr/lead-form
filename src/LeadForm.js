@@ -5,13 +5,13 @@ import { default as Joi } from 'joi'
 import { Flex } from 'reflexbox'
 import { default as isEqual } from 'lodash.isequal'
 
-const phoneNumberPattern = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gi // eslint-disable-line max-len
+const phoneNumberPattern = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/gi // eslint-disable-line max-len
 
 const phone = Joi.string().regex(phoneNumberPattern).options({
     language: {
         string: {
             regex: {
-                base: 'entry "{{!value}}" doesn\'t look like a valid US phone number, such as: (242) 333-5555' // eslint-disable-line max-len
+                base: 'entry "{{!value}}" doesn\'t look like a valid US phone number, such as: 248-333-5555' // eslint-disable-line max-len
             }
         }
     }
