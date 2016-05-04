@@ -1,6 +1,6 @@
 {
   "name": "@leadgrabr/lead-form",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "LeadGrabr lead form",
   "main": "dist/index.js",
   "scripts": {
